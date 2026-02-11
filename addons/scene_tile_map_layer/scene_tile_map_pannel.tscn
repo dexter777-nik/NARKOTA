@@ -1,0 +1,118 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbb0hw8ygbhrd"]
+
+[ext_resource type="Script" uid="uid://x8u60qdw0rqt" path="res://addons/scene_tile_map_layer/scene_tile_map_pannel.gd" id="1_g2gdq"]
+[ext_resource type="PackedScene" uid="uid://bleq38aow0js" path="res://addons/scene_tile_map_layer/pannel_row.tscn" id="2_f85vy"]
+
+[node name="SceneTileMapPannel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g2gdq")
+
+[node name="Root" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="Root"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/Header"]
+layout_mode = 2
+text = "Mode"
+
+[node name="DrawBtn" type="Button" parent="Root/Header"]
+layout_mode = 2
+text = "Draw"
+alignment = 0
+
+[node name="SelectBtn" type="Button" parent="Root/Header"]
+layout_mode = 2
+text = "Select"
+alignment = 0
+
+[node name="VSeparator2" type="VSeparator" parent="Root/Header"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label2" type="Label" parent="Root/Header"]
+layout_mode = 2
+text = "Open"
+
+[node name="SceneLoaderContainer" type="Control" parent="Root/Header"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Root/Header"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label3" type="Label" parent="Root/Header"]
+layout_mode = 2
+text = "Key"
+
+[node name="SceneKeyInput" type="TextEdit" parent="Root/Header"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="AddBtn" type="Button" parent="Root/Header"]
+layout_mode = 2
+text = "Save"
+
+[node name="Body" type="HBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScenesPanel" type="VBoxContainer" parent="Root/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Root/Body/ScenesPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScenesList" type="VBoxContainer" parent="Root/Body/ScenesPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PannelRow" parent="Root/Body/ScenesPanel/ScrollContainer/ScenesList" instance=ExtResource("2_f85vy")]
+layout_mode = 2
+key = "asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf"
+
+[node name="PannelRow2" parent="Root/Body/ScenesPanel/ScrollContainer/ScenesList" instance=ExtResource("2_f85vy")]
+layout_mode = 2
+key = "asdf"
+
+[node name="ScenePreview" type="Control" parent="Root/Body"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Root/Body/ScenePreview"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Root/Body/ScenePreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Root/Header/DrawBtn" to="." method="_on_draw_pressed"]
+[connection signal="pressed" from="Root/Header/SelectBtn" to="." method="_on_select_pressed"]
+[connection signal="text_changed" from="Root/Header/SceneKeyInput" to="." method="_on_scene_key_text_changed"]
+[connection signal="pressed" from="Root/Header/AddBtn" to="." method="_on_add_btn_pressed"]
