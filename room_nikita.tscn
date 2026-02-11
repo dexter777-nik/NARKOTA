@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cx30yun3qh30c"]
+
+[ext_resource type="Script" uid="uid://cbt3yhw23pb04" path="res://character_body_2d.gd" id="1_t6y5o"]
+[ext_resource type="Texture2D" uid="uid://xjrxxfhpenlh" path="res://nikita.png" id="2_88vhh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6y5o"]
+size = Vector2(185, 322)
+
+[node name="room_nikita" type="Node2D" unique_id=770741006]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=376132557]
+visible = false
+position = Vector2(120, 102)
+scale = Vector2(3, 3)
+texture = ExtResource("2_88vhh")
+hframes = 7
+vframes = 4
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=586603717]
+script = ExtResource("1_t6y5o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=625238206]
+position = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1179760608]
+position = Vector2(127.5, 199)
+shape = SubResource("RectangleShape2D_t6y5o")
