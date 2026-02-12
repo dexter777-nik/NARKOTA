@@ -1,130 +1,11 @@
 [gd_scene format=3 uid="uid://cx30yun3qh30c"]
 
+[ext_resource type="Script" uid="uid://b1u65ktci5q05" path="res://room.gd" id="1_7yrem"]
 [ext_resource type="Script" uid="uid://cbt3yhw23pb04" path="res://character_body_2d.gd" id="1_t6y5o"]
 [ext_resource type="Texture2D" uid="uid://xjrxxfhpenlh" path="res://nikita.png" id="2_88vhh"]
 [ext_resource type="Texture2D" uid="uid://c828pbmoq2cvl" path="res://1fee65bd3d77b09015018363dec3554e/Tiles/Tileset/living room&bedroom.png" id="3_bm1yv"]
-
-[sub_resource type="GDScript" id="GDScript_7yrem"]
-script/source = "extends Node2D
-
-@onready var money_label: Label = $CanvasLayer/MoneyLabel
-@onready var dialogue_box: Panel = $CanvasLayer/DialogueBox
-@onready var dialogue_text: Label = $CanvasLayer/DialogueBox/DialogueText
-@onready var prompt_label: Label = $CanvasLayer/PromptLabel
-@onready var phone_area: Area2D = $PhoneArea
-@onready var ringtone_player: AudioStreamPlayer = $AudioStreamPlayer
-
-var dialogue_index = 0
-var dialogue_lines = [
-	\"Никита: Алло, мам? Да, я заселился.\",
-	\"Мама: Ну слава богу, сынок. Как там? Комната хорошая?\",
-	\"Никита: Да, мам. Всё отлично...\",
-	\"Мама: Никитушка, я тебе перевела последние три тысячи. Покушай нормально.\",
-	\"Никита: Мам, тебе же нужнее...\",
-    \"Мама: Бери, пока дают. Учись хорошо. Ты — наша надежда.\"
-]
-
-var in_phone_area = false
-var dialogue_active = false
-var typing_speed: float = 0.03
-var typing_coroutine: GDScriptFunctionState = null
-
-var screen_shake_amount = 5
-var screen_original_position: Vector2
-var shaking = false
-
-func _ready():
-	Global.add_money(0)
-	update_money_display()
-	dialogue_box.visible = false
-	prompt_label.visible = false
-	screen_original_position = position
-
-func _on_PhoneArea_body_entered(body):
-	if body.name == \"Player\":
-		in_phone_area = true
-		prompt_label.text = \"Press E to answer\"
-		prompt_label.visible = true
-		ringtone_player.play()
-		shaking = true
-
-func _on_PhoneArea_body_exited(body):
-	if body.name == \"Player\":
-		in_phone_area = false
-		prompt_label.visible = false
-		ringtone_player.stop()
-		shaking = false
-		position = screen_original_position
-
-func _process(delta):
-	if in_phone_area and Input.is_action_just_pressed(\"ui_accept\") and not dialogue_active:
-		start_dialogue()
-	if shaking:
-		var offset = Vector2(randf_range(-screen_shake_amount, screen_shake_amount),
-							 randf_range(-screen_shake_amount, screen_shake_amount))
-		position = screen_original_position + offset
-
-func update_money_display():
-	money_label.text = str(Global.money) + \" ₽\"
-
-func start_dialogue():
-	dialogue_active = true
-	dialogue_box.visible = true
-	dialogue_index = 0
-	ringtone_player.stop()
-	shaking = false
-	position = screen_original_position
-	show_next_line()
-
-func show_next_line():
-	if dialogue_index < dialogue_lines.size():
-		var line = dialogue_lines[dialogue_index]
-		dialogue_index += 1
-		type_text(line)
-	else:
-		end_dialogue()
-
-func _input(event):
-	if dialogue_active and event.is_action_pressed(\"ui_accept\"):
-		if typing_coroutine != null and typing_coroutine.is_valid() and not typing_coroutine.is_completed():
-			typing_coroutine.resume(true)
-		else:
-			show_next_line()
-
-func end_dialogue():
-	dialogue_box.visible = false
-	dialogue_active = false
-	Global.add_money(3000)
-	update_money_display()
-	create_task()
-
-func create_task():
-	print(\"Появилось задание: Купить еды в киоске\")
-
-func type_text(text: String):
-	dialogue_text.text = \"\"
-	if typing_coroutine != null and typing_coroutine.is_valid():
-		typing_coroutine = null
-	typing_coroutine = _type_text_coroutine(text)
-	typing_coroutine.resume()
-
-var typing_coroutine: GDScriptFunctionState = null
-
-func type_text(text: String):
-	dialogue_text.text = \"\"
-	if typing_coroutine != null and typing_coroutine.is_valid():
-		typing_coroutine = null
-	# просто присваиваем GDScriptFunctionState от async функции
-	typing_coroutine = _async_type_text(text)
-	typing_coroutine.resume()
-
-# async функция должна быть отдельной, без вложенных return
-async func _async_type_text(text: String):
-	for c in text:
-		dialogue_text.text += c
-		await get_tree().process_frame()
-		await get_tree().create_timer(typing_speed).timeout
-"
+[ext_resource type="Texture2D" uid="uid://cviijgsv54peu" path="res://c10dbcb3e23465cbc4d0d6db09bb8bc40fcabda5/Phone_keepRingingAnimation_1.png" id="5_1svjf"]
+[ext_resource type="AudioStream" uid="uid://d1bnv3h81jbl7" path="res://c0cebf4e5c9d49d.mp3" id="5_ju4pc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgpd0"]
 texture = ExtResource("3_bm1yv")
@@ -1140,9 +1021,80 @@ animations = [{
 radius = 6.4327545
 height = 16.374268
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngaoe"]
+atlas = ExtResource("5_1svjf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcle8"]
+atlas = ExtResource("5_1svjf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3divx"]
+atlas = ExtResource("5_1svjf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to346"]
+atlas = ExtResource("5_1svjf")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k038u"]
+atlas = ExtResource("5_1svjf")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe43n"]
+atlas = ExtResource("5_1svjf")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oehdq"]
+atlas = ExtResource("5_1svjf")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbk2m"]
+atlas = ExtResource("5_1svjf")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm0jb"]
+atlas = ExtResource("5_1svjf")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pe5nh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngaoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcle8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3divx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to346")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k038u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fe43n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oehdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbk2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm0jb")
+}],
+"loop": true,
+"name": &"phone_shake",
+"speed": 5.0
+}]
+
 [node name="room_nikita" type="Node2D" unique_id=770741006]
 scale = Vector2(1.71, 1.71)
-script = SubResource("GDScript_7yrem")
+script = ExtResource("1_7yrem")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1986893016]
 tile_set = SubResource("TileSet_7yrem")
@@ -1207,6 +1159,7 @@ position = Vector2(-1.1695906, 9.941521)
 script = ExtResource("1_t6y5o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1261693716]
+texture_filter = 1
 position = Vector2(150, 159)
 scale = Vector2(2.044119, 1.8712118)
 sprite_frames = SubResource("SpriteFrames_ngaoe")
@@ -1220,3 +1173,53 @@ shape = SubResource("CapsuleShape2D_xgpd0")
 position = Vector2(173, 147)
 zoom = Vector2(1.515, 1.515)
 position_smoothing_enabled = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=364680240]
+
+[node name="Panel" type="Panel" parent="UI" unique_id=365672732]
+visible = false
+offset_left = 18.0
+offset_top = 380.0
+offset_right = 366.0
+offset_bottom = 468.0
+
+[node name="Label" type="Label" parent="UI/Panel" unique_id=1388727927]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Panel" unique_id=2058980905]
+visible = false
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 48.0
+
+[node name="PhoneUI" type="Control" parent="UI" unique_id=194088257]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -163.0
+offset_top = 220.0
+offset_right = -123.0
+offset_bottom = 260.0
+
+[node name="Label" type="Label" parent="UI/PhoneUI" unique_id=1059047856]
+layout_mode = 0
+offset_left = 937.0
+offset_top = 150.0
+offset_right = 1145.0
+offset_bottom = 173.0
+text = "Нажми E, чтобы ответить"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/PhoneUI" unique_id=1818724836]
+position = Vector2(587, 50)
+stream = ExtResource("5_ju4pc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/PhoneUI" unique_id=1704515413]
+texture_filter = 1
+position = Vector2(1059, 298.99997)
+scale = Vector2(7.609375, 6.9999995)
+sprite_frames = SubResource("SpriteFrames_pe5nh")
+animation = &"phone_shake"
+frame = 2
+frame_progress = 0.6682153
