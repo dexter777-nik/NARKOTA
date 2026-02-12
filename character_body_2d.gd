@@ -5,7 +5,7 @@ const SPEED = 300.0
 
 func _physics_process(delta):
 	# Получаем направление ввода (WASD или стрелки)
-	var direction = Input.get_vector("ui_left", "ui_right", "KEY_W", "ui_down")
+	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	# Применяем скорость
 	if direction:
