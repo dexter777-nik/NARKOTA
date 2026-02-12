@@ -880,7 +880,7 @@ size = Vector2(185, 322)
 [node name="room_nikita" type="Node2D" unique_id=770741006]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=376132557]
-position = Vector2(440, 155)
+position = Vector2(442.00003, 81)
 scale = Vector2(3, 3)
 texture = ExtResource("2_88vhh")
 hframes = 7
@@ -902,5 +902,5 @@ script = ExtResource("1_t6y5o")
 position = Vector2(1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1179760608]
-position = Vector2(465, 190)
+position = Vector2(502, 179)
 shape = SubResource("RectangleShape2D_t6y5o")
