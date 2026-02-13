@@ -4858,7 +4858,7 @@ scale = Vector2(2.5, 2.5)
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D" unique_id=1036232243]
 position = Vector2(495.01993, -53.658955)
-scale = Vector2(9.999999e-06, 9.999999e-06)
+scale = Vector2(1e-05, 1e-05)
 shape = SubResource("RectangleShape2D_ikdr5")
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D" unique_id=1520680664]
