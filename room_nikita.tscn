@@ -1020,7 +1020,7 @@ radius = 6.4327545
 height = 16.374268
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ngaoe"]
-size = Vector2(124.61988, 112.33918)
+size = Vector2(83.94739, 112.33918)
 
 [node name="room_nikita" type="Node2D" unique_id=770741006]
 scale = Vector2(1.71, 1.71)
@@ -1107,7 +1107,7 @@ position_smoothing_enabled = true
 [node name="Area2D" type="Area2D" parent="." unique_id=1512610806]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1905944574]
-position = Vector2(524.5614, 318.71344)
+position = Vector2(544.89764, 318.71344)
 shape = SubResource("RectangleShape2D_ngaoe")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
