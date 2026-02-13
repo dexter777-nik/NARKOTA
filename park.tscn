@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c3kwt1i2omwo3" path="res://5322f2e4a5ce6f91a90f006093cd133de28f137b/Free_Version/Tilemap/images-no-bg-preview (carve.photos).png" id="6_baggn"]
 [ext_resource type="Script" uid="uid://cbt3yhw23pb04" path="res://character_body_2d.gd" id="7_kmuhq"]
 [ext_resource type="Texture2D" uid="uid://xjrxxfhpenlh" path="res://nikita.png" id="8_ikdr5"]
+[ext_resource type="Script" uid="uid://cy4cqh7hf5l7h" path="res://park.gd" id="9_ikdr5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uask1"]
 texture = ExtResource("1_lcr5t")
@@ -8497,8 +8498,18 @@ size = Vector2(225.59998, 16.400013)
 radius = 36.80005
 height = 73.6001
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxp7s"]
+size = Vector2(58.4, 66.399994)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojnmo"]
+size = Vector2(198.78986, 120.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idg5f"]
+size = Vector2(119.09385, 259)
+
 [node name="Node2D" type="Node2D" unique_id=690312165]
 position = Vector2(-4.275, 147)
+script = ExtResource("9_ikdr5")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=2065554711]
 <<<<<<< HEAD
@@ -8530,7 +8541,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(262165, 0, 8, 327701, 0, 9, 393237, 0, 10, 458773, 0, 11, 196630, 65536, 7, 262166, 65536, 8, 327702, 65536, 9, 393238, 65536, 10, 458774, 65536, 11, 524310, 65536, 12, 196631, 131072, 7, 262167, 131072, 8, 327703, 131072, 9, 393239, 131072, 10, 458775, 131072, 11, 524311, 131072, 12, 589847, 131072, 13, 131096, 196608, 6, 196632, 196608, 7, 262168, 196608, 8, 327704, 196608, 9, 393240, 196608, 10, 458776, 196608, 11, 524312, 196608, 12, 589848, 196608, 13, 65561, 262144, 5, 131097, 262144, 6, 196633, 262144, 7, 262169, 262144, 8, 327705, 262144, 9, 393241, 262144, 10, 458777, 262144, 11, 524313, 262144, 12, 589849, 262144, 13, 65562, 327680, 5, 131098, 327680, 6, 196634, 327680, 7, 262170, 327680, 8, 327706, 327680, 9, 393242, 327680, 10, 458778, 327680, 11, 524314, 327680, 12, 589850, 327680, 13, 65563, 393216, 5, 131099, 393216, 6, 196635, 393216, 7, 262171, 393216, 8, 327707, 393216, 9, 393243, 393216, 10, 458779, 393216, 11, 524315, 393216, 12, 589851, 393216, 13, 131100, 458752, 6, 196636, 458752, 7, 262172, 458752, 8, 327708, 458752, 9, 393244, 458752, 10, 458780, 458752, 11, 524316, 458752, 12, 589852, 458752, 13, 196637, 524288, 7, 262173, 524288, 8, 327709, 524288, 9, 393245, 524288, 10, 458781, 524288, 11, 524317, 524288, 12, 589853, 524288, 13, 262174, 589824, 8, 327710, 589824, 9, 393246, 589824, 10, 458782, 589824, 11, 524318, 589824, 12)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1733905726]
-position = Vector2(-1.1695906, 9.941521)
+position = Vector2(237.27501, 5.9999924)
 script = ExtResource("7_kmuhq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1475462600]
@@ -8611,3 +8622,30 @@ shape = SubResource("RectangleShape2D_r4lto")
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D" unique_id=881263355]
 position = Vector2(417.02, 83.2)
 shape = SubResource("CapsuleShape2D_kmuhq")
+
+[node name="roomNikita" type="Area2D" parent="." unique_id=1614519701]
+position = Vector2(-0.72500014, 136)
+scale = Vector2(2.5, 2.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roomNikita" unique_id=1945720787]
+position = Vector2(38.22, 3.6000013)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_gxp7s")
+
+[node name="club" type="Area2D" parent="." unique_id=2107807530]
+position = Vector2(1793.275, 791)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="club" unique_id=1515858694]
+position = Vector2(17, 12)
+shape = SubResource("RectangleShape2D_ojnmo")
+
+[node name="spal" type="Area2D" parent="." unique_id=415442407]
+position = Vector2(5.2750015, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spal" unique_id=301724413]
+position = Vector2(1951.5469, 134.5)
+shape = SubResource("RectangleShape2D_idg5f")
+
+[connection signal="body_entered" from="roomNikita" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="club" to="." method="_on_club_body_entered"]
+[connection signal="body_entered" from="spal" to="." method="_on_spal_body_entered"]
