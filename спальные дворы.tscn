@@ -3862,7 +3862,11 @@ size = Vector2(49, 35)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu60j"]
 size = Vector2(29, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_noiwj"]
+size = Vector2(620, 1)
+
 [node name="Node2D" type="Node2D" unique_id=124340559]
+texture_filter = 1
 
 [node name="TileMap" type="TileMap" parent="." unique_id=488237028]
 position = Vector2(127, 148)
@@ -3880,7 +3884,6 @@ layer_4/name = "Layer4"
 layer_4/tile_data = PackedInt32Array(17, 720898, 14, 262151, 2, 12, 524319, 1835010, 5, 458775, 458754, 21, 24, 2, 20, 1966117, 262149, 1610612736, 1900581, 327685, 1610612736, 1966118, 262149, 1610612737, 1900582, 327685, 1610612737, 1966119, 262149, 1610612738, 1900583, 327685, 1610612738, 1966104, 327690, 1610612736, 1966105, 327690, 1610612737, 2031661, 393222, 1610612738, 2097197, 327686, 1610612738, 2162733, 262150, 1610612738, 2031660, 393222, 1610612737, 2097196, 327686, 1610612737, 2162732, 262150, 1610612737, 2097195, 327686, 1610612736, 2162731, 262150, 1610612736, 2621457, 131078, 0, 2686993, 131078, 1, 2752529, 131078, 2, 2621455, 6, 0, 2686991, 6, 1, 2752527, 6, 2, 2621456, 65542, 0, 2686992, 65542, 1, 2752528, 65542, 2, 65575, 6, 0, 131111, 6, 1, 196647, 6, 2, 65576, 65542, 0, 131112, 65542, 1, 196648, 65542, 2, 65577, 131078, 0, 131113, 131078, 1, 196649, 131078, 2, 2621458, 262150, 0, 2686994, 262150, 1, 2752530, 262150, 2, 2621459, 327686, 0, 2686995, 327686, 1, 2752531, 327686, 2, 2621460, 131078, 0, 2686996, 393222, 1, 2752532, 393222, 2, 1900568, 393226, 1610612736, 1900569, 393226, 1610612737, 1966106, 327690, 1610612738, 1900570, 393226, 1610612738, 1966111, 327687, 1610612736, 1966112, 327687, 1610612737)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=778784828]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1525535878]
 position = Vector2(455, 243.5)
@@ -3925,3 +3928,7 @@ shape = SubResource("RectangleShape2D_te7r1")
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D" unique_id=1324565036]
 position = Vector2(431.5, 688)
 shape = SubResource("RectangleShape2D_nu60j")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D" unique_id=1422772455]
+position = Vector2(665, 835.5)
+shape = SubResource("RectangleShape2D_noiwj")

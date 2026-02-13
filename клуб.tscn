@@ -3811,6 +3811,7 @@ size = Vector2(5, 32)
 size = Vector2(368, 512)
 
 [node name="Node2D" type="Node2D" unique_id=1712158592]
+texture_filter = 1
 
 [node name="TileMap" type="TileMap" parent="." unique_id=606345750]
 tile_set = SubResource("TileSet_fcvlx")
