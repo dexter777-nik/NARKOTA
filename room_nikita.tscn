@@ -1019,6 +1019,9 @@ animations = [{
 radius = 6.4327545
 height = 16.374268
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngaoe"]
+size = Vector2(165.55544, 127.48537)
+
 [node name="room_nikita" type="Node2D" unique_id=770741006]
 scale = Vector2(1.71, 1.71)
 script = ExtResource("1_7yrem")
@@ -1081,22 +1084,32 @@ shape = SubResource("RectangleShape2D_jv2a6")
 position = Vector2(18.099411, 132.45612)
 shape = SubResource("RectangleShape2D_h1u6r")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=721772198]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=721772198]
 position = Vector2(-1.1695906, 9.941521)
 script = ExtResource("1_t6y5o")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1261693716]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1261693716]
 texture_filter = 1
 position = Vector2(150, 159)
 scale = Vector2(2.044119, 1.8712118)
 sprite_frames = SubResource("SpriteFrames_ngaoe")
 animation = &"walk_down"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=2036291756]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=2036291756]
 position = Vector2(149.1228, 172.51462)
 shape = SubResource("CapsuleShape2D_xgpd0")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=422662564]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=422662564]
 position = Vector2(173, 147)
 zoom = Vector2(1.515, 1.515)
 position_smoothing_enabled = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1571934386]
+position = Vector2(540.93567, 322.2222)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2100741465]
+position = Vector2(-43.538147, -6.4327393)
+shape = SubResource("RectangleShape2D_ngaoe")
+disabled = true
+
+[connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]
