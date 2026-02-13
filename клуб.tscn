@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bal25c806kv4s"]
 
 [ext_resource type="Texture2D" uid="uid://btbbdpgjdpnr5" path="res://хотлайн/Floor tiles/bacground0.png" id="1_0hhbw"]
+[ext_resource type="Script" uid="uid://bueof67g7i3ie" path="res://клуб.gd" id="1_u3634"]
 [ext_resource type="Texture2D" uid="uid://c8xcbq1tl7bv6" path="res://хотлайн/Floor/sprite1087.png" id="2_teoqp"]
 [ext_resource type="Texture2D" uid="uid://g22yvaauala7" path="res://хотлайн/Puzzle Letters/sprUGlow.png" id="3_kj5lt"]
 [ext_resource type="Texture2D" uid="uid://bigp1d48dnie2" path="res://хотлайн/Floor/sprGlassFloor.png" id="4_u3634"]
@@ -3813,7 +3814,10 @@ size = Vector2(6.5, 32)
 size = Vector2(510, 733)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3634"]
-size = Vector2(75.82732, 25.007072)
+size = Vector2(75.82732, 16.456463)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcf80"]
+size = Vector2(17, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bm1yv"]
 atlas = ExtResource("14_u3634")
@@ -3927,7 +3931,7 @@ radius = 6.4327545
 height = 16.374268
 
 [node name="Node2D" type="Node2D" unique_id=1712158592]
-texture_filter = 1
+script = ExtResource("1_u3634")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=606345750]
 texture_filter = 1
@@ -3954,7 +3958,6 @@ format = 2
 layer_0/tile_data = PackedInt32Array(852021, 0, 1342177280, 852023, 0, 0, 852022, 4, 805306368, 852024, 2, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1866499151]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=834319864]
 position = Vector2(881, 271)
@@ -3973,12 +3976,19 @@ position = Vector2(1053.1, 352.875)
 scale = Vector2(2.044119, 1.8712118)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=838353390]
-position = Vector2(2.1525269, -180.24243)
-scale = Vector2(1, 0.99999976)
+position = Vector2(2.1525269, -184.51773)
+scale = Vector2(1, 0.9999996)
 shape = SubResource("RectangleShape2D_u3634")
 
+[node name="Area2D2" type="Area2D" parent="." unique_id=1764205595]
+position = Vector2(572, -78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=101703563]
+position = Vector2(7, 643)
+shape = SubResource("RectangleShape2D_qcf80")
+
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1626763189]
-position = Vector2(568, 250)
+position = Vector2(572, -78)
 script = ExtResource("13_kj5lt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=737101841]
@@ -3998,3 +4008,4 @@ zoom = Vector2(1.515, 1.515)
 position_smoothing_enabled = true
 
 [connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
