@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cx30yun3qh30c"]
 
-[ext_resource type="Script" uid="uid://b1u65ktci5q05" path="res://room.gd" id="1_7yrem"]
+[ext_resource type="Script" path="res://room.gd" id="1_7yrem"]
 [ext_resource type="Script" uid="uid://cbt3yhw23pb04" path="res://character_body_2d.gd" id="1_t6y5o"]
 [ext_resource type="Texture2D" uid="uid://xjrxxfhpenlh" path="res://nikita.png" id="2_88vhh"]
 [ext_resource type="Texture2D" uid="uid://c828pbmoq2cvl" path="res://1fee65bd3d77b09015018363dec3554e/Tiles/Tileset/living room&bedroom.png" id="3_bm1yv"]
@@ -1035,6 +1035,7 @@ layer_3/name = "Layer3"
 layer_3/tile_data = PackedInt32Array(655363, 0, 5, 720899, 0, 6, 786435, 0, 7, 851971, 0, 8, 917507, 0, 9, 655364, 65536, 5, 720900, 65536, 6, 786436, 65536, 7, 851972, 65536, 8, 917508, 65536, 9)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1549744582]
+visible = false
 position = Vector2(40.350876, 138.5965)
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D" unique_id=679347680]

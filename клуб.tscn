@@ -3835,6 +3835,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(852021, 0, 1342177280, 852023, 0, 0, 852022, 4, 805306368, 852024, 2, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1866499151]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=834319864]
 position = Vector2(600, 184)
